@@ -14,17 +14,21 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
 
-  <!-- Objectif 1 : Récuper projet archi via l'api
-	Bonus : faire les filtres à récup via la back sauf "tous" -->
+  <!-- Objectif 1 :
+       Objectif 2 : 
+       Ojectif 3 : Faire la modale
+      (Faire fonctionner la suppretion)  -->
 
   <body>
     <header>
-      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li>login</li>
+          <li id="login-item">
+            <a href="/assets/login.html" class="login-index">login</a>
+          </li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -54,14 +58,23 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <div class="boutons-filtres">
-          <a class="btn-tous">Tous</a>
-          <a class="btn-objets">Objets</a>
-          <a class="btn-appartements">Appartements</a>
-          <a class="btn-hotel_restaurant">Hôtel & restaurants</a>
+        <div class="modifier">
+          <h2>Mes Projets</h2>
+          <a id="btn-modifier">modifier</a>
+        </div>
+        <div id="filters">
+          <button class="filter-btn btn-tous">Tous</button>
         </div>
         <div class="gallery"></div>
+      </section>
+      <section>
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Modifier le projet</h2>
+            <div id="modal-projects"></div>
+          </div>
+        </div>
       </section>
       <section id="contact">
         <h2>Contact</h2>

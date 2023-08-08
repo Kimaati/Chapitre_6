@@ -107,10 +107,14 @@ section {
 }
 body {
   line-height: 1;
+  background-color: #fffef8;
 }
 ol,
 ul {
   list-style: none;
+}
+li:hover {
+  cursor: pointer;
 }
 blockquote,
 q {
@@ -163,7 +167,9 @@ h2 {
   font-weight: 700;
   font-size: 30px;
   color: #1d6154;
+  position: relative;
 }
+
 .boutons-filtres {
   display: flex;
   justify-content: center;
@@ -172,10 +178,19 @@ h2 {
   left: 427px;
 }
 
-.boutons-filtres a {
-  display: flex;
-  /* width: 100%; */
-  height: 37px;
+#filters {
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.btn-tous {
+  color: white;
+}
+
+/* Styles pour tous les boutons de filtre */
+.filter-btn {
+  display: inline-block;
   border-radius: 60px;
   border: 1px solid #1d6154;
   font-family: syne;
@@ -183,14 +198,17 @@ h2 {
   font-weight: 700;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
   margin: 0 5px;
   color: #1d6154;
+  text-align: center;
+  background-color: #fff;
 }
-.boutons-filtres a:hover {
-	background-color: #1d6154;
-	color: white;
-	cursor: pointer;
+
+.filter-btn:hover {
+  background-color: #1d6154;
+  color: white;
+  cursor: pointer;
 }
 
 nav ul {
@@ -201,6 +219,15 @@ nav ul {
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
+}
+
+.login-index {
+  text-decoration: none;
+  color: black;
+}
+
+.login-index:hover {
+  color: #b1663c;
 }
 
 li:hover {
@@ -229,10 +256,23 @@ li:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+.modifier {
+  position: relative;
+}
+
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
 }
+
+#btn-modifier {
+  color: red;
+  position: absolute;
+  top: 25%;
+  right: 30%;
+  cursor: pointer;
+}
+
 .gallery {
   width: 100%;
   display: grid;
@@ -244,6 +284,94 @@ li:hover {
 .gallery img {
   width: 100%;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 180px;
+}
+
+.title-form {
+  font-family: Syne;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 36px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+}
+
+.form-mail,
+.form-mdp {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #3d3d3d;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.login-input {
+  width: 379px;
+  height: 51px;
+  border: none;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.login-sub {
+  width: 179px;
+  height: 36px;
+  border-radius: 25px;
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  margin: 25px auto;
+}
+
+.login-sub:hover {
+  cursor: pointer;
+}
+
+.login-mdp {
+  color: #3d3d3d;
+  font-size: 14px;
+}
+
+/* Styles pour la modale */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 60%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 #contact {
   width: 50%;
   margin: auto;
@@ -284,6 +412,9 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+footer {
+  background-color: #fff;
 }
 
 footer nav ul {

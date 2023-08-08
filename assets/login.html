@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur - login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <li id="login">login</li>
+          <li><img src="/assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <h2 class="title-form">Log in</h2>
+      <form id="login-form">
+        <div>
+          <p class="form-mail">E-mail</p>
+          <input type="email" id="email" class="login-input" />
+        </div>
+        <div>
+          <p class="form-mdp">Mot de passe</p>
+          <input type="password" id="password" class="login-input" />
+        </div>
+        <input
+          type="submit"
+          value="Se connecter"
+          class="login-sub"
+          id="login-btn"
+        />
+      </form>
+
+      <a class="login-mdp" href="#">Mot de passe oublié</a>
+    </main>
+
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script src="/assets/script-login.js"></script>
+  </body>
+</html>
