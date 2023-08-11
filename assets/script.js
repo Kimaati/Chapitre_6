@@ -96,6 +96,7 @@ fetch(urlCategories)
 function checkLoggedIn() {
   const authToken = localStorage.getItem("authToken");
   const filtersContainer = document.getElementById("filters");
+  const modifierButton = document.querySelector(".modifier-button"); // Ajout de cette ligne
 
   if (authToken) {
     // L'utilisateur est connecté
@@ -104,6 +105,9 @@ function checkLoggedIn() {
 
     // Masque les filtres
     filtersContainer.style.display = "none";
+
+    // Affiche le bouton "modifier" lorsque l'utilisateur est connecté
+    modifierButton.style.display = "block"; // Ajout de cette ligne
   } else {
     // L'utilisateur n'est pas connecté
     document.getElementById("login-item").innerHTML =
@@ -111,6 +115,9 @@ function checkLoggedIn() {
 
     // Affiche les filtres
     filtersContainer.style.display = "flex";
+
+    // Masque le bouton "modifier" lorsque l'utilisateur n'est pas connecté
+    modifierButton.style.display = "none"; // Ajout de cette ligne
   }
 }
 
@@ -214,3 +221,16 @@ document.getElementById("btn-modifier").addEventListener("click", async () => {
     console.error(error);
   }
 });
+
+// Affichage modale
+
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");
+
+modalTriggers.forEach((trigger) =>
+  trigger.addEventListener("click", toggleModal)
+);
+
+function toggleModal() {
+  modalContainer.classList.toggle("active");
+}
