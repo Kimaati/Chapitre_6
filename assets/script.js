@@ -3,7 +3,7 @@ let urlCategories = "http://localhost:5678/api/categories";
 let galerieContainer = document.querySelector(".gallery");
 let filtersContainer = document.getElementById("filters");
 let allButton = document.querySelector(".btn-tous");
-
+let galerieModale = document.querySelector(".galerie");
 let allProjects = [];
 
 fetch(urlWorks)
@@ -96,7 +96,8 @@ fetch(urlCategories)
 function checkLoggedIn() {
   const authToken = localStorage.getItem("authToken");
   const filtersContainer = document.getElementById("filters");
-  const modifierButton = document.querySelector(".modifier-button"); // Ajout de cette ligne
+  const modifierButton = document.querySelector(".modifier-button");
+  const modifierButtonLogo = document.querySelector(".fa-pen-to-square");
 
   if (authToken) {
     // L'utilisateur est connecté
@@ -107,7 +108,8 @@ function checkLoggedIn() {
     filtersContainer.style.display = "none";
 
     // Affiche le bouton "modifier" lorsque l'utilisateur est connecté
-    modifierButton.style.display = "block"; // Ajout de cette ligne
+    modifierButton.style.display = "block";
+    modifierButtonLogo.style.display = "block";
   } else {
     // L'utilisateur n'est pas connecté
     document.getElementById("login-item").innerHTML =
@@ -117,7 +119,8 @@ function checkLoggedIn() {
     filtersContainer.style.display = "flex";
 
     // Masque le bouton "modifier" lorsque l'utilisateur n'est pas connecté
-    modifierButton.style.display = "none"; // Ajout de cette ligne
+    modifierButton.style.display = "none";
+    modifierButtonLogo.style.display = "none";
   }
 }
 
@@ -138,90 +141,6 @@ document.getElementById("login-item").addEventListener("click", (event) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Ouvrir la modale lorsque le bouton "modifier" est cliqué
-  document.getElementById("btn-modifier").addEventListener("click", () => {
-    document.getElementById("modal").style.display = "block";
-  });
-
-  // Fermer la modale lorsque l'utilisateur clique sur la croix ou en dehors de la modale
-  document.addEventListener("click", (event) => {
-    const modal = document.getElementById("modal");
-    if (event.target === modal || event.target.id === "close-modal") {
-      modal.style.display = "none";
-    }
-  });
-
-  // Autres fonctionnalités de la modale (ajout/suppression de projets, etc.)
-});
-
-// Fonction pour afficher les projets dans la modale
-function displayProjectsInModal(projects) {
-  const modalProjectsContainer = document.getElementById("modal-projects");
-  modalProjectsContainer.innerHTML = ""; // Effacer le contenu existant
-
-  projects.forEach((project) => {
-    const projectDiv = document.createElement("div");
-    projectDiv.classList.add("project", "modal-project");
-
-    const projectImage = document.createElement("img");
-    projectImage.src = project.imageUrl;
-    projectImage.alt = project.title;
-
-    const projectName = document.createElement("h3");
-    projectName.textContent = project.title;
-
-    // Ajouter d'autres éléments HTML pour afficher les détails du projet, par exemple la description, etc.
-
-    projectDiv.appendChild(projectImage);
-    projectDiv.appendChild(projectName);
-    modalProjectsContainer.appendChild(projectDiv);
-  });
-}
-
-// Fonction pour afficher les projets dans la modale
-function displayProjectsInModal(projects) {
-  const modalProjectsContainer = document.getElementById("modal-projects");
-  modalProjectsContainer.innerHTML = ""; // Effacer le contenu existant
-
-  projects.forEach((project) => {
-    const projectDiv = document.createElement("div");
-    projectDiv.classList.add("project", "modal-project");
-
-    const projectImage = document.createElement("img");
-    projectImage.src = project.imageUrl;
-    projectImage.alt = project.title;
-
-    const projectName = document.createElement("h3");
-    projectName.textContent = project.title;
-
-    // Ajouter d'autres éléments HTML pour afficher les détails du projet, par exemple la description, etc.
-
-    projectDiv.appendChild(projectImage);
-    projectDiv.appendChild(projectName);
-    modalProjectsContainer.appendChild(projectDiv);
-  });
-}
-
-document.getElementById("btn-modifier").addEventListener("click", async () => {
-  document.getElementById("modal").style.display = "block";
-
-  // Désactiver le défilement de la page principale
-  document.body.style.overflow = "hidden";
-
-  try {
-    const response = await fetch("http://localhost:5678/api/works");
-    if (!response.ok) {
-      throw new Error("Erreur lors de la récupération des projets");
-    }
-    const projects = await response.json();
-
-    displayProjectsInModal(projects);
-  } catch (error) {
-    console.error(error);
-  }
-});
-
 // Affichage modale
 
 const modalContainer = document.querySelector(".modal-container");
@@ -234,3 +153,22 @@ modalTriggers.forEach((trigger) =>
 function toggleModal() {
   modalContainer.classList.toggle("active");
 }
+
+// Ajoute de la galerie dans la modale
+
+const btnModifier = document.querySelector(".modifier-button");
+
+btnModifier.addEventListener("click", () => {
+  galerieModale.innerHTML = allProjects
+    .map((projet) => {
+      return `<div class= "galerie-content">
+    <img src= "${projet.imageUrl}">
+    <span class= "delete-img"><i class="fa-solid fa-trash-can"></i></span>
+    <p class= "editer">Édité</p>
+    `;
+    })
+    .join("");
+});
+
+// Dataset permet de mettre des id (ou d'autres données) dans un élément html
+// Quand click sur poubelle = regardé le dataset de l'image cliqué
