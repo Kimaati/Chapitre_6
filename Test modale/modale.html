@@ -17,9 +17,9 @@
     <title>modale</title>
   </head>
   <body>
-    <section>
+    <section id="modal-1">
       <button class="modal-btn modal-trigger">Open modal</button>
-      <!-- <div id="modal" class="modal-container">
+      <div id="modal-container-1" class="modal-container-1">
         <div class="overlay modal-trigger"></div>
         <div class="modal-content">
           <button class="close-modal modal-trigger">x</button>
@@ -31,10 +31,10 @@
             <button class="supprimer-galerie">Supprimer la galerie</button>
           </div>
         </div>
-      </div> -->
+      </div>
     </section>
-    <section>
-      <div id="modal-ajout-photo" class="modal-container">
+    <section id="modal-2">
+      <div id="modal-container-2" class="modal-container-2">
         <div class="overlay modal-trigger"></div>
         <div class="modal-content">
           <button class="close-modal modal-trigger">x</button>
@@ -48,8 +48,10 @@
             <label for="title" class="label">Title</label>
             <input type="text" class="labelModal" id="title" name="title" />
             <label for="categorie" class="label">Catégorie</label>
-            <input type="file" name="" id="" />
+            <select id="category" name="category"></select>
           </div>
+          <hr class="separat-2" />
+          <button class="validation">Valider</button>
         </div>
       </div>
     </section>
