@@ -164,11 +164,20 @@ btnModifier.addEventListener("click", () => {
       return `<div class= "galerie-content">
     <img src= "${projet.imageUrl}">
     <span class= "delete-img"><i class="fa-solid fa-trash-can"></i></span>
-    <p class= "editer">Édité</p>
-    `;
+    <p class= "editer">éditer</p>
+    </div>`;
     })
     .join("");
+
+  const deleteButtons = document.querySelectorAll(".delete-img");
+  deleteButtons.forEach((button) =>
+    button.addEventListener("click", deleteImage)
+  );
 });
+
+function deleteImage(event) {
+  const imageId = event.target.getAttribute("id");
+}
 
 // Dataset permet de mettre des id (ou d'autres données) dans un élément html
 // Quand click sur poubelle = regardé le dataset de l'image cliqué
