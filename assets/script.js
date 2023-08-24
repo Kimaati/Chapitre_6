@@ -147,7 +147,10 @@ const modalContainers = document.querySelectorAll(".modal-container-1");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 
 modalTriggers.forEach((trigger) =>
-  trigger.addEventListener("click", toggleModal)
+  trigger.addEventListener("click", () => {
+    clearForm();
+    toggleModal();
+  })
 );
 
 function toggleModal() {
@@ -269,29 +272,47 @@ async function loadCategories() {
 
 loadCategories();
 
-// Delete photo
-
-// Ce qu'il me faut :
-// Quand je clique sur l'icone poubelle d'une photo, il faut que la photo en question disparaisse sans toucher aux autres photos
-
-// Dataset permet de mettre des id (ou d'autres données) dans un élément html
-// Quand click sur poubelle = regardé le dataset de l'image cliqué
-
 // Ajout de photo
 
-const ajoutPhotoButton = document.querySelector(".button-ajout-photo");
+let ajoutPhotoButton = document.querySelector(".button-ajout-photo");
 let previewImage;
 let file = null;
 const ajoutContent = document.querySelector(".ajout-content");
 const validationButton = document.querySelector(".validation");
 
-ajoutPhotoButton.addEventListener("click", () => {
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.accept = "image/jpeg,image/png";
-  fileInput.addEventListener("change", handleFileSelect);
-  fileInput.click();
-});
+function managePhotoButton() {
+  ajoutPhotoButton.addEventListener("click", () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/jpeg,image/png";
+    fileInput.addEventListener("change", handleFileSelect);
+    fileInput.click();
+    const titleInput = document.querySelector("#title");
+    const categorySelect = document.querySelector("#category");
+    titleInput.addEventListener("change", () => {
+      validateForm();
+    });
+    categorySelect.addEventListener("change", () => {
+      validateForm();
+    });
+  });
+}
+managePhotoButton();
+
+function clearForm() {
+  const titleInput = document.querySelector("#title");
+  console.log("clear");
+  titleInput.value = "";
+  if (document.querySelector(".miniature-image")) {
+    document.querySelector(".miniature-image").remove();
+    const ajoutContent = document.querySelector(".ajout-content");
+    ajoutContent.innerHTML = `<i class="fa-regular fa-image"></i>
+    <button class="button-ajout-photo">+ Ajout photo</button>
+    <p class="info-photo">jpg, png : 4mo max</p>`;
+    ajoutPhotoButton = document.querySelector(".button-ajout-photo");
+    managePhotoButton();
+  }
+}
 
 function handleFileSelect(event) {
   file = event.target.files[0];
@@ -307,6 +328,19 @@ function handleFileSelect(event) {
       ajoutContent.appendChild(previewImage);
     };
     reader.readAsDataURL(file);
+  }
+  validateForm();
+}
+
+function validateForm() {
+  const titleInput = document.querySelector("#title");
+  console.log(titleInput.value.length);
+  if (titleInput.value.length > 0 && file !== null) {
+    console.log("ok");
+    validationButton.removeAttribute("disabled");
+  } else {
+    console.log("no");
+    validationButton.setAttribute("disabled", "true");
   }
 }
 
