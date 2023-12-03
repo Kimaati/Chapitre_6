@@ -18,11 +18,20 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
 
-  <!-- Objectif 1 : stylisée le contenu de la modale
-       Objectif 2 : coder suppression image
-       Objectif 3 : Faire la seconde modale -->
+  <!-- r.oubraim@gmail.com -->
+  <!-- Ajout de la barre non fonctionnel "mode édition" -->
+  <!-- Retravailler le fonctionnement de mon js : 
+  les méthodes utiliser et utilisable
+  le "await" et sa variante avec le ".then"
+  La façon de récupérer le dataset id dans la "function deleteImage". Récupération que ce fait dans "function displayGalerie" avec "data-id="${projet.id}" -->
 
   <body>
+    <div id="connected-bar" class="connected-bar">
+      <div class="connected-bar-content">
+        <i class="fa-regular fa-pen-to-square"></i>
+        <p>modifier</p>
+      </div>
+    </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
@@ -111,7 +120,7 @@
         </div>
 
         <div id="filters">
-          <button class="filter-btn btn-tous">Tous</button>
+          <button class="filter-btn btn-tous selected-filter">Tous</button>
         </div>
         <div class="gallery"></div>
       </section>

@@ -170,6 +170,31 @@ h2 {
   position: relative;
 }
 
+/* Barre noir quand l'utilisateur est co */
+.connected-bar {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.connected-bar-content {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.connected-bar-content p,
+.connected-bar-content i {
+  cursor: pointer;
+}
+
 .boutons-filtres {
   display: flex;
   justify-content: center;
@@ -209,6 +234,11 @@ h2 {
   background-color: #1d6154;
   color: white;
   cursor: pointer;
+}
+
+.selected-filter {
+  background-color: #1d6154;
+  color: #fff;
 }
 
 nav ul {
@@ -272,7 +302,8 @@ li:hover {
   cursor: pointer;
 }
 
-.fa-pen-to-square {
+.modifier .fa-pen-to-square {
+  display: none;
   position: absolute;
   top: 25%;
   right: 38.5%;

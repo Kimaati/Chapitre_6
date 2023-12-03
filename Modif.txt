@@ -1,0 +1,12 @@
+- Ajout background-color fixe quand le filtre est séléctionné :
+
+Modification du JS. Au lieur d'ajouter la classe "active" au btn, j'ajoute la classe "selected-filter"
+Modification du CSS. Ajout de la classe "selected-filter"
+
+
+-  Ajout du message quand mauvais mots de passe ou mail :
+
+Modification du login.html. Ajout d'une div en dessous du formulaire de connexion
+Modification du script-login.js. Ajout d'une nouvelle constante et modification du code pour ajouter le message d'erreur
+
+Problème, quand je met une icône dans ma div de la barre noir, le bouton modifier apparaît même si nous sommes déco

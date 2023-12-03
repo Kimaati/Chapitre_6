@@ -5,9 +5,14 @@ loginForm.addEventListener("submit", (event) => {
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const errorMessage = document.getElementById("error-message");
 
   loginToAPI(email, password)
     .then((token) => {
+      // Effacer le message d'erreur
+      errorMessage.textContent = "";
+      errorMessage.style.color = ""; // Réinitialiser la couleur du texte
+
       // Stocker le token d'authentification dans le stockage local
       localStorage.setItem("authToken", token);
 
@@ -16,6 +21,10 @@ loginForm.addEventListener("submit", (event) => {
     })
     .catch((error) => {
       console.error("Erreur de connexion : ", error);
+
+      // Afficher le message d'erreur
+      errorMessage.textContent = "Identifiants invalides. Veuillez réessayer.";
+      errorMessage.style.color = "red"; // Définir la couleur du texte en rouge
     });
 });
 

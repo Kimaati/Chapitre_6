@@ -42,22 +42,22 @@ function displayProjets(filteredProjects) {
 fetch(urlCategories)
   .then((response) => response.json())
   .then((categories) => {
-    // Ajouter un gestionnaire d'événements pour le bouton "Tous" (statique)
+    // Ajoute un gestionnaire d'événements pour le bouton "Tous" (statique)
     allButton.addEventListener("click", () => {
-      // Supprimer la classe "active" de tous les boutons de filtre
+      // Supprime la classe "active" de tous les boutons de filtre
       const allButtons = document.querySelectorAll(".filter-btn");
       allButtons.forEach((btn) => {
         btn.classList.remove("active");
       });
 
-      // Ajouter la classe "active" au bouton "Tous"
+      // Ajoute la classe "active" au bouton "Tous"
       allButton.classList.add("active");
 
-      // Appeler la fonction pour afficher tous les projets
+      // Appele la fonction pour afficher tous les projets
       displayProjets(allProjects);
     });
 
-    // Créer dynamiquement les autres boutons de filtre
+    // Crée dynamiquement les autres boutons de filtre
     categories.forEach((categorie) => {
       const btn = document.createElement("a");
       btn.textContent = categorie.name;
@@ -67,18 +67,20 @@ fetch(urlCategories)
       );
       filtersContainer.appendChild(btn);
 
-      // Ajouter un gestionnaire d'événements à chaque bouton de filtre
+      // Ajoute un gestionnaire d'événements à chaque bouton de filtre
       btn.addEventListener("click", () => {
-        // Supprimer la classe "active" de tous les boutons de filtre
+        // Supprime la classe "active" de tous les boutons de filtre
         const allButtons = document.querySelectorAll(".filter-btn");
         allButtons.forEach((btn) => {
-          btn.classList.remove("active");
+          // btn.classList.remove("active");
+          btn.classList.remove("selected-filter");
         });
 
-        // Ajouter la classe "active" au bouton cliqué
-        btn.classList.add("active");
+        // Ajoute la classe "active" au bouton cliqué
+        // btn.classList.add("active");
+        btn.classList.add("selected-filter");
 
-        // Filtrer les projets par catégorie
+        // Filtre les projets par catégorie
         const filteredProjects = allProjects.filter(
           (projet) => projet.categoryId === categorie.id
         );
@@ -92,12 +94,26 @@ fetch(urlCategories)
     console.error(error);
   });
 
+const btnAll = document.querySelector(".btn-tous");
+btnAll.addEventListener("click", () => {
+  displayProjets(allProjects);
+  const allButtons = document.querySelectorAll(".filter-btn");
+  allButtons.forEach((btn) => {
+    // btn.classList.remove("active");
+    btn.classList.remove("selected-filter");
+  });
+  btnAll.classList.add("selected-filter");
+});
+
 // Fonction pour vérifier si l'utilisateur est connecté
 function checkLoggedIn() {
   const authToken = localStorage.getItem("authToken");
   const filtersContainer = document.getElementById("filters");
   const modifierButton = document.querySelector(".modifier-button");
-  const modifierButtonLogo = document.querySelector(".fa-pen-to-square");
+  const modifierButtonLogo = document.querySelector(
+    ".modifier .fa-pen-to-square"
+  );
+  const connectedBar = document.getElementById("connected-bar");
 
   if (authToken) {
     // L'utilisateur est connecté
@@ -110,6 +126,7 @@ function checkLoggedIn() {
     // Affiche le bouton "modifier" lorsque l'utilisateur est connecté
     modifierButton.style.display = "block";
     modifierButtonLogo.style.display = "block";
+    connectedBar.style.display = "block";
   } else {
     // L'utilisateur n'est pas connecté
     document.getElementById("login-item").innerHTML =
@@ -121,6 +138,7 @@ function checkLoggedIn() {
     // Masque le bouton "modifier" lorsque l'utilisateur n'est pas connecté
     modifierButton.style.display = "none";
     modifierButtonLogo.style.display = "none";
+    connectedBar.style.display = "none";
   }
 }
 
